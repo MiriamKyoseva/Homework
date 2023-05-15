@@ -21,6 +21,8 @@ public class CommandFactoryImpl implements CommandFactory {
                 return new TotalPrice(cosmeticsFactory, cosmeticsRepository);
             case SHOWCATEGORY:
                 return new ShowCategory(cosmeticsFactory, cosmeticsRepository);
+            case SHOWPRODUCT:
+                return new ShowProduct(cosmeticsFactory, cosmeticsRepository);
             case ADDTOCATEGORY:
                 return new AddToCategory(cosmeticsFactory, cosmeticsRepository);
             case CREATEPRODUCT:

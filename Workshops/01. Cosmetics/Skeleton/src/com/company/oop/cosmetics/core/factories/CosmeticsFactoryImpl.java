@@ -2,6 +2,7 @@ package com.company.oop.cosmetics.core.factories;
 
 import com.company.oop.cosmetics.models.Category;
 import com.company.oop.cosmetics.models.cart.ShoppingCart;
+import com.company.oop.cosmetics.models.common.GenderType;
 import com.company.oop.cosmetics.models.products.Product;
 import com.company.oop.cosmetics.core.contracts.CosmeticsFactory;
 
@@ -12,7 +13,7 @@ public class CosmeticsFactoryImpl implements CosmeticsFactory {
     }
     
     public Product createProduct(String name, String brand, double price, String gender) {
-        throw new UnsupportedOperationException("Not implemented yet.");
+        return new Product(name, brand, price, GenderType.valueOf(gender.toUpperCase()));
     }
     
     public ShoppingCart createShoppingCart() {

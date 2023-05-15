@@ -3,7 +3,9 @@ package com.company.oop.cosmetics.models.products;
 import com.company.oop.cosmetics.models.common.GenderType;
 
 public class Product {
-    
+
+    private static final int MIN_LENGTH_PRODUCT_NAME = 3;
+    private static final int MAX_LENGTH_PRODUCT_NAME = 10;
     private double price;
     private String name;
     private String brand;
@@ -23,7 +25,7 @@ public class Product {
     }
 
     public void setName(String name) {
-        if (name.length() <3 || name.length() > 10) throw new IllegalArgumentException("Product's name must be between 3 symbols and 10 symbols");
+        if (name.length() < MIN_LENGTH_PRODUCT_NAME || name.length() > MAX_LENGTH_PRODUCT_NAME) throw new IllegalArgumentException("Product's name must be between 3 symbols and 10 symbols");
         this.name = name;
     }
 

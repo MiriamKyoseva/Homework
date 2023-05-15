@@ -6,7 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Category {
-    
+    private static final int MIN_LENGTH_CATEGORY_NAME = 2;
+    private static final int MAX_LENGTH_CATEGORY_NAME = 15;
     private String name;
     private List<Product> products;
 
@@ -15,7 +16,7 @@ public class Category {
     }
 
     public void setName(String name) {
-        if (name.length() < 2 || name.length() > 15) throw new IllegalArgumentException("Category's name must be between 2 symbols and 15 symbols.");
+        if (name.length() < MIN_LENGTH_CATEGORY_NAME || name.length() > MAX_LENGTH_CATEGORY_NAME) throw new IllegalArgumentException("Category's name must be between 2 symbols and 15 symbols.");
         this.name = name;
     }
 

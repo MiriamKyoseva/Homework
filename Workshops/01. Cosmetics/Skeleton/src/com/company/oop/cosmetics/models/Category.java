@@ -39,7 +39,12 @@ public class Category {
     }
     
     public String print() {
-        return "#Category: " + getName() + System.lineSeparator() + products;
+        StringBuilder category = new StringBuilder("#Category: " + getName());
+        if (products.isEmpty()) return category + System.lineSeparator() + " #No product in this category";
+        for (Product kur : products) {
+            category.append(System.lineSeparator()).append(kur.print());
+        }
+        return String.valueOf(category);
     }
     
 }

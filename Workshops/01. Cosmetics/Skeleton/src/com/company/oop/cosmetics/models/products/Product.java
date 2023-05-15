@@ -52,7 +52,7 @@ public class Product {
     }
     
     public String print() {
-        String print = " #" + getName() + " " + getBrand() + System.lineSeparator() + " #Price: $" + getPrice() + System.lineSeparator() + " #Gender: " + getGender() + System.lineSeparator() + " ===";
+        String print = " #" + getName() + " " + getBrand() + System.lineSeparator() + " #Price: $" + String.format("%.2f", getPrice()) + System.lineSeparator() + " #Gender: " + getGender() + System.lineSeparator() + " ===";
         return print;
     }
     

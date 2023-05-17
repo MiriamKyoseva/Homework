@@ -1,6 +1,8 @@
 package boardr.models.common;
 
 public class Errors {
+    public static final String INVALID_COMMAND =
+            "Invalid command.";
     public static final String NULL_TITLE_ERROR =
             "Title cannot be null.";
     public static final String BLANK_TITLE_ERROR =

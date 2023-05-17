@@ -5,7 +5,10 @@ import boardr.models.common.Status;
 import boardr.models.eventlog.EventLog;
 import boardr.models.eventlog.Log;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import static boardr.models.common.Errors.*;
@@ -16,7 +19,8 @@ public class BoardItem {
     private String title;
     private LocalDate dueDate;
     private Status status;
-    private final ArrayList<Log> localEvents = new ArrayList<>();;
+    private final ArrayList<Log> localEvents = new ArrayList<>();
+
 
     public BoardItem (String title, LocalDate dueDate) {
         setTitle(title);
@@ -27,7 +31,15 @@ public class BoardItem {
         Log itemCreated = new Log(description);
         addToHistory(itemCreated);
     }
-
+    public BoardItem (String title, String dueDate) {
+        setTitle(title);
+        setDueDate(dueDate);
+        status = Status.OPEN;
+        Board.addItem(this);
+        String description = String.format("Item created: %s", getInfo());
+        Log itemCreated = new Log(description);
+        addToHistory(itemCreated);
+    }
     public String getTitle(){
         return title;
     }
@@ -58,6 +70,16 @@ public class BoardItem {
         if (newDueDate.isBefore(LocalDate.now())) throw new IllegalArgumentException(DUE_DATE_ERROR);
         LocalDate previousDueDate = this.dueDate;
         this.dueDate = newDueDate;
+        if (previousDueDate != null) {
+            String description = String.format("Due Date changed from %s to %s", previousDueDate, newDueDate);
+            Log itemDueDateChange = new Log(description);
+            addToHistory(itemDueDateChange);
+        }
+    }
+    public void setDueDate(String newDueDate) {
+        if (LocalDate.parse(newDueDate).isBefore(LocalDate.now())) throw new IllegalArgumentException(DUE_DATE_ERROR);
+        LocalDate previousDueDate = dueDate;
+        dueDate = LocalDate.parse(newDueDate);
         if (previousDueDate != null) {
             String description = String.format("Due Date changed from %s to %s", previousDueDate, newDueDate);
             Log itemDueDateChange = new Log(description);

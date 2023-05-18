@@ -23,4 +23,6 @@ public class Errors {
             "Item with \"%s\" title already exists.";
     public static final String FINDING_ITEM_ERROR =
             "Item does not exist.";
+    public static final String NEW_TITLE_ERROR =
+            "The new title should not be the same as the current title.";
 }

@@ -5,10 +5,7 @@ import boardr.models.common.Status;
 import boardr.models.eventlog.EventLog;
 import boardr.models.eventlog.Log;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import static boardr.models.common.Errors.*;
@@ -64,7 +61,7 @@ public class BoardItem {
         String previousTitle = this.title;
         this.title = newTitle;
         if (previousTitle != null) {
-            String description = String.format("Title changed from %s to %s", previousTitle, newTitle);
+            String description = String.format("Title changed from \"%s\" to \"%s\"", previousTitle, newTitle);
             Log itemTitleChange = new Log(description);
             addToHistory(itemTitleChange);
         }
@@ -110,7 +107,7 @@ public class BoardItem {
     }
 
     public String getInfo() {
-        String info = String.format("'%s', [%s | %s]", title, status.label, dueDate);
+        String info = String.format("\"%s\", [%s | %s]", title, status.label, dueDate);
         return info;
     }
 

@@ -21,6 +21,7 @@ public class CommandFactory {
                 return new CreateBoardItem();
             case CHANGEITEMTITLE:
                 return new ChangeItemTitle();
+            // not implemented yet
             default:
                 throw new IllegalArgumentException(INVALID_COMMAND);
         }

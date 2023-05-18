@@ -29,7 +29,7 @@ public class Engine {
     }
 
     private void processCommand(String commandInput) {
-        if (commandInput == null || commandInput.trim().equals("")) {
+        if (commandInput == null || commandInput.isBlank()) {
             throw new IllegalArgumentException(INVALID_COMMAND);
         }
         String commandName = parseCommand(commandInput);

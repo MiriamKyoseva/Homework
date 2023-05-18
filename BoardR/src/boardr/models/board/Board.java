@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import static boardr.models.common.Errors.*;
 
 public class Board {
-    public static final ArrayList<BoardItem> items = new ArrayList<>();
+    private static final ArrayList<BoardItem> items = new ArrayList<>();
     public static ArrayList<BoardItem> getItems() {
         return items;
     }

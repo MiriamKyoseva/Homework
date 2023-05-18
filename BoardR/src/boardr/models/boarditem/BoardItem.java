@@ -15,7 +15,7 @@ import static boardr.models.common.Errors.*;
 
 public class BoardItem {
     private static final int MIN_TITLE_LENGTH = 5;
-    private static final int MAX_TITLE_LENGTH = 30;
+    private static final int MAX_TITLE_LENGTH = 50;
     private String title;
     private LocalDate dueDate;
     private Status status;

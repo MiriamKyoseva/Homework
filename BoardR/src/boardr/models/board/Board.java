@@ -8,7 +8,7 @@ import static boardr.models.common.Errors.*;
 public class Board {
     private static final ArrayList<BoardItem> items = new ArrayList<>();
     public static ArrayList<BoardItem> getItems() {
-        return items;
+        return new ArrayList<>(items);
     }
     private int totalItems = items.size();
     public int getTotalItems() {

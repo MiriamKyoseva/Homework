@@ -1,15 +1,12 @@
 package boardr.commands;
 
-import boardr.models.board.Board;
 import boardr.models.boarditem.BoardItem;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static boardr.models.boarditem.BoardItem.*;
 import static boardr.models.board.Board.getItems;
-import static boardr.models.board.Board.items;
-import static boardr.models.common.Errors.*;
+import static boardr.models.common.Errors.FINDING_ITEM_ERROR;
 
 public class ChangeItemTitle implements Command {
     @Override
@@ -30,7 +27,7 @@ public class ChangeItemTitle implements Command {
         return index;
     }
     private String changeItemTitle(String oldTitle, String newTitle, int index) {
-        items.get(index).setTitle(newTitle);
+        getItems().get(index).setTitle(newTitle);
         return String.format(CommandConstants.ITEM_TITLE_CHANGED, oldTitle, newTitle);
     }
 }

@@ -17,12 +17,10 @@ public class Errors {
             "Status cannot be further advanced.";
     public static final String EMPTY_STRING_ERROR =
             "Description cannot be empty.";
-    public static final String TERMINATION_COMMAND =
-            "Exit";
-    public static final String COMMAND_ERROR_INVALID_COMMAND =
-            "Command cannot be null or empty.";
     public static final String EXISTING_ITEM_ERROR =
             "Item already exists.";
+    public static final String EXISTING_ITEM_WITH_SAME_TITLE_ERROR =
+            "Item with \"%s\" title already exists.";
     public static final String FINDING_ITEM_ERROR =
             "Item does not exist.";
 }

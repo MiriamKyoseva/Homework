@@ -17,7 +17,8 @@ public class CreateBoardItem implements Command {
         return createBoardItem(title, dueDate);
     }
     private String createBoardItem(String title, String dueDate) {
-        if (getItems().contains(title)) throw new IllegalArgumentException(EXISTING_ITEM_ERROR);
+        if (getItems().stream().anyMatch(item -> item.getTitle().equals(title)))
+            throw new IllegalArgumentException(EXISTING_ITEM_ERROR);
         BoardItem item = new BoardItem(title, dueDate);
         return String.format(CommandConstants.BOARD_ITEM_CREATED, item.getInfo());
     }

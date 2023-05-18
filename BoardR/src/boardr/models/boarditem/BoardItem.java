@@ -53,10 +53,14 @@ public class BoardItem {
     }
 
     public void setTitle(String newTitle){
-        if (newTitle == null) throw new IllegalArgumentException(NULL_TITLE_ERROR);
-        if (newTitle.isEmpty() || newTitle.isBlank()) throw new IllegalArgumentException(BLANK_TITLE_ERROR);
+        if (newTitle == null)
+            throw new IllegalArgumentException(NULL_TITLE_ERROR);
+        if (newTitle.isEmpty() || newTitle.isBlank())
+            throw new IllegalArgumentException(BLANK_TITLE_ERROR);
         if (newTitle.length() < MIN_TITLE_LENGTH || newTitle.length() > MAX_TITLE_LENGTH)
             throw new IllegalArgumentException(String.format(TITLE_LENGTH_ERROR, MIN_TITLE_LENGTH, MAX_TITLE_LENGTH));
+        if (Board.getItems().stream().anyMatch(item -> item.getTitle().equals(newTitle)))
+            throw new IllegalArgumentException(String.format(EXISTING_ITEM_WITH_SAME_TITLE_ERROR, newTitle));
         String previousTitle = this.title;
         this.title = newTitle;
         if (previousTitle != null) {

@@ -1,6 +1,7 @@
 package boardr.commands;
 
 public enum CommandType {
+
     CREATEBOARDITEM,
     CHANGEITEMTITLE,
     CHANGEITEMDUEDATE,

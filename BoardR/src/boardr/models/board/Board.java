@@ -6,13 +6,16 @@ import java.util.ArrayList;
 import static boardr.models.common.Errors.*;
 
 public class Board {
-    private static final ArrayList<BoardItem> items = new ArrayList<>();
+    public static final ArrayList<BoardItem> items = new ArrayList<>();
     public static ArrayList<BoardItem> getItems() {
-        return new ArrayList<>(items);
+        return items;
     }
     private int totalItems = items.size();
     public int getTotalItems() {
         return totalItems;
+    }
+    public static int getItemIndex(BoardItem item) {
+        return items.indexOf(item);
     }
 
     public static void addItem(BoardItem item) {

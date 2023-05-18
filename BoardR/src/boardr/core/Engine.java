@@ -1,6 +1,8 @@
 package boardr.core;
 
 import boardr.commands.Command;
+import boardr.commands.CommandConstants;
+import boardr.commands.CommandType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,25 +11,26 @@ import java.util.Scanner;
 import static boardr.models.common.Errors.*;
 
 public class Engine {
+    private static final String TERMINATION_COMMAND =
+            "Exit";
     public void start() {
         Scanner sc = new Scanner(System.in);
         while (true) {
-            //try {
+            try {
                 String commandInput = sc.nextLine();
                 if (commandInput.equalsIgnoreCase(TERMINATION_COMMAND)) {
                     break;
                 }
                 processCommand(commandInput);
-            //}catch (Exception ex) {
-            //    System.out.println((ex.getMessage() != null && !ex.getMessage().isEmpty() ? ex.getMessage() : ex.toString()));
-            //}
-            //tova za kakvo e? wtf
+            }catch (Exception ex) {
+                System.out.println((ex.getMessage() != null && !ex.getMessage().isEmpty() ? ex.getMessage() : ex.toString()));
+            }
         }
     }
 
     private void processCommand(String commandInput) {
         if (commandInput == null || commandInput.trim().equals("")) {
-            throw new IllegalArgumentException(COMMAND_ERROR_INVALID_COMMAND);
+            throw new IllegalArgumentException(INVALID_COMMAND);
         }
         String commandName = parseCommand(commandInput);
         Command command = CommandFactory.createCommand(commandName);

@@ -27,3 +27,5 @@ ChangeItemTitle banica banic
 ```
 "banica" was changed to "banic".
 ```
+#### Exit
+- Exit the program.

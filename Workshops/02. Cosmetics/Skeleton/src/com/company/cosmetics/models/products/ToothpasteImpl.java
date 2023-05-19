@@ -4,6 +4,7 @@ import com.company.cosmetics.models.contracts.Toothpaste;
 import com.company.cosmetics.models.common.GenderType;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.company.cosmetics.models.common.Errors.INGREDIENTS_NULL_ERROR;
@@ -30,6 +31,6 @@ public class ToothpasteImpl extends ProductBase implements Toothpaste {
 
     @Override
     public List<String> getIngredients() {
-        return ingredients;
+        return new ArrayList<>(ingredients);
     }
 }

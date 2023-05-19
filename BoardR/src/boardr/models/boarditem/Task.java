@@ -35,23 +35,19 @@ public class Task extends BoardItem {
     }
 
     public Task(String title, String assignee, LocalDate dueDate) {
-        setTitle(title);
+        super(title, dueDate);
         setAssignee(assignee);
-        setDueDate(dueDate);
         status = Status.TO_DO;
-        String desc = String.format("Item created: %s", getInfo());
-        Log itemCreated = new Log(desc);
-        addToHistory(itemCreated);
     }
     public Task(String title, String assignee, String dueDate) {
-        setTitle(title);
+        super(title, dueDate);
         setAssignee(assignee);
-        setDueDate(dueDate);
         status = Status.TO_DO;
-        Board.addItem(this);
-        String desc = String.format("Item created: %s", getInfo());
-        Log itemCreated = new Log(desc);
-        addToHistory(itemCreated);
+    }
+    @Override
+    public void revertStatus() {
+        if (status == Status.TO_DO) throw new IllegalArgumentException(REVERT_STATUS_ERROR);
+        super.revertStatus();
     }
     @Override
     public String getInfo() {

@@ -18,10 +18,6 @@ public class BoardItem {
     protected Status status;
     protected final ArrayList<Log> localEvents = new ArrayList<>();
 
-
-    public BoardItem() {
-        title = "";
-    }
     public BoardItem (String title, LocalDate dueDate) {
         setTitle(title);
         setDueDate(dueDate);
@@ -79,14 +75,7 @@ public class BoardItem {
         }
     }
     public void setDueDate(String newDueDate) {
-        if (LocalDate.parse(newDueDate).isBefore(LocalDate.now())) throw new IllegalArgumentException(DUE_DATE_ERROR);
-        LocalDate previousDueDate = dueDate;
-        dueDate = LocalDate.parse(newDueDate);
-        if (previousDueDate != null) {
-            String description = String.format("Due Date changed from %s to %s", previousDueDate, newDueDate);
-            Log itemDueDateChange = new Log(description);
-            addToHistory(itemDueDateChange);
-        }
+        setDueDate(LocalDate.parse(newDueDate));
     }
 
     public void revertStatus() {

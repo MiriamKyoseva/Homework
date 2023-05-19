@@ -1,8 +1,6 @@
 package boardr.core;
 
 import boardr.commands.Command;
-import boardr.commands.CommandConstants;
-import boardr.commands.CommandType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,11 +38,11 @@ public class Engine {
     }
 
     public static String parseCommand(String fullCommand) {
-        String commandName = fullCommand.split(" ")[0];
+        String commandName = fullCommand.split(" ; ")[0];
         return commandName;
     }
     public static List<String> parseParameters(String fullCommand) {
-        String[] commandParts = fullCommand.split(" ");
+        String[] commandParts = fullCommand.split(" ; ");
         ArrayList<String> parameters = new ArrayList<>();
         for (int i = 1 ; i < commandParts.length ; i++) {
             parameters.add(commandParts[i]);

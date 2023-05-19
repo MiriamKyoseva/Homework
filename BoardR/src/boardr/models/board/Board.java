@@ -1,8 +1,11 @@
 package boardr.models.board;
 
 import boardr.models.boarditem.BoardItem;
+import boardr.models.boarditem.Issue;
+import boardr.models.boarditem.Task;
 
 import java.util.ArrayList;
+
 import static boardr.models.common.Errors.*;
 
 public class Board {

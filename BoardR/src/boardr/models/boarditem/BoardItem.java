@@ -12,13 +12,16 @@ import static boardr.models.common.Errors.*;
 
 public class BoardItem {
     private static final int MIN_TITLE_LENGTH = 5;
-    private static final int MAX_TITLE_LENGTH = 50;
-    private String title;
-    private LocalDate dueDate;
-    private Status status;
-    private final ArrayList<Log> localEvents = new ArrayList<>();
+    private static final int MAX_TITLE_LENGTH = 30;
+    protected String title;
+    protected LocalDate dueDate;
+    protected Status status;
+    protected final ArrayList<Log> localEvents = new ArrayList<>();
 
 
+    public BoardItem() {
+        title = "";
+    }
     public BoardItem (String title, LocalDate dueDate) {
         setTitle(title);
         setDueDate(dueDate);
@@ -56,8 +59,6 @@ public class BoardItem {
             throw new IllegalArgumentException(BLANK_TITLE_ERROR);
         if (newTitle.length() < MIN_TITLE_LENGTH || newTitle.length() > MAX_TITLE_LENGTH)
             throw new IllegalArgumentException(String.format(TITLE_LENGTH_ERROR, MIN_TITLE_LENGTH, MAX_TITLE_LENGTH));
-        if (Board.getItems().stream().anyMatch(item -> item.getTitle().equals(newTitle)))
-            throw new IllegalArgumentException(String.format(EXISTING_ITEM_WITH_SAME_TITLE_ERROR, newTitle));
         String previousTitle = this.title;
         this.title = newTitle;
         if (previousTitle != null) {
@@ -115,7 +116,7 @@ public class BoardItem {
         System.out.println(getInfo());
     }
 
-    private void addToHistory(Log log) {
+    protected void addToHistory(Log log) {
         localEvents.add(log);
         EventLog.addLogToHistory(log);
     }

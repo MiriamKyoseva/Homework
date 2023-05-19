@@ -3,6 +3,8 @@ package boardr.commands;
 public enum CommandType {
 
     CREATEBOARDITEM,
+    CREATETASK,
+    OPENISSUE,
     CHANGEITEMTITLE,
     CHANGEITEMDUEDATE,
     ADVANCEITEMSTATUS,

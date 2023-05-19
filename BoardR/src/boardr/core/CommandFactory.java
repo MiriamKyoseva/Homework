@@ -1,9 +1,6 @@
 package boardr.core;
 
-import boardr.commands.ChangeItemTitle;
-import boardr.commands.Command;
-import boardr.commands.CommandType;
-import boardr.commands.CreateBoardItem;
+import boardr.commands.*;
 
 import java.util.Arrays;
 
@@ -19,6 +16,10 @@ public class CommandFactory {
         switch (commandType) {
             case CREATEBOARDITEM:
                 return new CreateBoardItem();
+            case CREATETASK:
+                return new CreateTask();
+            case OPENISSUE:
+                return new OpenIssue();
             case CHANGEITEMTITLE:
                 return new ChangeItemTitle();
             // not implemented yet

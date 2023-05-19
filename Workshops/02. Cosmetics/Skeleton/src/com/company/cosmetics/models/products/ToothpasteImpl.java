@@ -24,7 +24,6 @@ public class ToothpasteImpl extends ProductBase implements Toothpaste {
 
     @Override
     public String print() {
-        //check if this works:
         String print = String.format("#%s %s%n #Price: $%.2f%n #Gender: %s%n #Ingredients: %s%n===", getName(), getBrand(), getPrice(), getGender(), getIngredients());
         return print;
     }

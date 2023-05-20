@@ -8,14 +8,24 @@ import boardr.models.eventlog.Log;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import static boardr.commands.common.CommandConstants.*;
+import static boardr.models.board.Board.getItems;
 import static boardr.models.common.Errors.*;
 
 public class BoardItem {
     private static final int MIN_TITLE_LENGTH = 5;
     private static final int MAX_TITLE_LENGTH = 30;
+
     protected String title;
     protected LocalDate dueDate;
     protected Status status;
+    protected String assignee;
+    protected String description;
+
+    public void setAssignee(String newAssignee) {
+        this.assignee = assignee;
+    }
+
     protected final ArrayList<Log> localEvents = new ArrayList<>();
 
     public BoardItem (String title, LocalDate dueDate) {
@@ -23,7 +33,7 @@ public class BoardItem {
         setDueDate(dueDate);
         status = Status.OPEN;
         Board.addItem(this);
-        String description = String.format("Item created: %s", getInfo());
+        String description = String.format(BOARD_ITEM_CREATED, getInfo());
         Log itemCreated = new Log(description);
         addToHistory(itemCreated);
     }
@@ -32,7 +42,7 @@ public class BoardItem {
         setDueDate(dueDate);
         status = Status.OPEN;
         Board.addItem(this);
-        String description = String.format("Item created: %s", getInfo());
+        String description = String.format(BOARD_ITEM_CREATED, getInfo());
         Log itemCreated = new Log(description);
         addToHistory(itemCreated);
     }
@@ -55,10 +65,12 @@ public class BoardItem {
             throw new IllegalArgumentException(BLANK_TITLE_ERROR);
         if (newTitle.length() < MIN_TITLE_LENGTH || newTitle.length() > MAX_TITLE_LENGTH)
             throw new IllegalArgumentException(String.format(TITLE_LENGTH_ERROR, MIN_TITLE_LENGTH, MAX_TITLE_LENGTH));
+        if (getItems().stream().anyMatch(item -> item.getTitle().equals(title)))
+            throw new IllegalArgumentException(EXISTING_ITEM_WITH_SAME_TITLE_ERROR);
         String previousTitle = this.title;
         this.title = newTitle;
         if (previousTitle != null) {
-            String description = String.format("Title changed from \"%s\" to \"%s\"", previousTitle, newTitle);
+            String description = String.format(ITEM_TITLE_CHANGED, previousTitle, newTitle);
             Log itemTitleChange = new Log(description);
             addToHistory(itemTitleChange);
         }
@@ -69,7 +81,7 @@ public class BoardItem {
         LocalDate previousDueDate = this.dueDate;
         this.dueDate = newDueDate;
         if (previousDueDate != null) {
-            String description = String.format("Due Date changed from %s to %s", previousDueDate, newDueDate);
+            String description = String.format(ITEM_DUE_DATE_CHANGED, getTitle(), previousDueDate, newDueDate);
             Log itemDueDateChange = new Log(description);
             addToHistory(itemDueDateChange);
         }
@@ -82,7 +94,7 @@ public class BoardItem {
         if (status.ordinal() == 0) throw new IllegalArgumentException(REVERT_STATUS_ERROR);
         String previousStatus = status.label;
         status = Status.values()[status.ordinal()-1];
-        String description = String.format("Status changed from %s to %s", previousStatus, status.label);
+        String description = String.format(ITEM_STATUS_CHANGED, title, previousStatus, status.label);
         Log itemStatusChange = new Log(description);
         addToHistory(itemStatusChange);
     }
@@ -91,7 +103,7 @@ public class BoardItem {
         if (status.ordinal() == Status.values().length-1) throw new IllegalArgumentException(ADVANCE_STATUS_ERROR);
         String previousStatus = status.label;
         status = Status.values()[status.ordinal()+1];
-        String description = String.format("Status changed from %s to %s", previousStatus, status.label);
+        String description = String.format(ITEM_STATUS_CHANGED, title, previousStatus, status.label);
         Log itemStatusChange = new Log(description);
         addToHistory(itemStatusChange);
     }
@@ -115,4 +127,5 @@ public class BoardItem {
             kur.viewInfo();
         }
     }
+
 }

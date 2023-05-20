@@ -37,4 +37,6 @@ public class Errors {
             "Description cannot be blank.";
     public static final String DESCRIPTION_LENGTH_ERROR =
             "Description's length must be between %d and %d symbols.";
+    public static final String SAME_DUE_DATE_ERROR =
+            "New due date cannot be the same as the current one";
 }

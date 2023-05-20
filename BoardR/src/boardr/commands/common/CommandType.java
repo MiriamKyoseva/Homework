@@ -1,10 +1,11 @@
-package boardr.commands;
+package boardr.commands.common;
 
 public enum CommandType {
 
     CREATEBOARDITEM,
     CREATETASK,
     OPENISSUE,
+    CHANGEASSIGNEE,
     CHANGEITEMTITLE,
     CHANGEITEMDUEDATE,
     ADVANCEITEMSTATUS,

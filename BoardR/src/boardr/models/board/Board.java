@@ -1,8 +1,6 @@
 package boardr.models.board;
 
 import boardr.models.boarditem.BoardItem;
-import boardr.models.boarditem.Issue;
-import boardr.models.boarditem.Task;
 
 import java.util.ArrayList;
 
@@ -10,6 +8,9 @@ import static boardr.models.common.Errors.*;
 
 public class Board {
     private static final ArrayList<BoardItem> items = new ArrayList<>();
+    public static ArrayList<BoardItem> changeItem() {
+        return items;
+    }
     public static ArrayList<BoardItem> getItems() {
         return new ArrayList<>(items);
     }
@@ -17,8 +18,15 @@ public class Board {
     public int getTotalItems() {
         return totalItems;
     }
-    public static int getItemIndex(BoardItem item) {
-        return items.indexOf(item);
+    public static int getItemIndex(String oldTitle) {
+        if (getItems().stream().noneMatch(item -> item.getTitle().equals(oldTitle)))
+            throw new IllegalArgumentException(FINDING_ITEM_ERROR);
+        ArrayList<BoardItem> searchItem = getItems();
+        int index = 0;
+        for (BoardItem kur : searchItem) {
+            if (kur.getTitle().equals(oldTitle))  index=getItems().indexOf(kur);
+        }
+        return index;
     }
 
     public static void addItem(BoardItem item) {

@@ -1,7 +1,8 @@
 package boardr.core;
 
-import boardr.commands.*;
-
+import boardr.commands.common.Command;
+import boardr.commands.common.CommandType;
+import boardr.commands.itemcommands.*;
 import java.util.Arrays;
 
 import static boardr.models.common.Errors.INVALID_COMMAND;
@@ -22,6 +23,18 @@ public class CommandFactory {
                 return new OpenIssue();
             case CHANGEITEMTITLE:
                 return new ChangeItemTitle();
+            case CHANGEASSIGNEE:
+                return new ChangeAssignee();
+            case CHANGEITEMDUEDATE:
+                return new ChangeItemDueDate();
+            case ADVANCEITEMSTATUS:
+                return new AdvanceItemStatus();
+            case REVERTITEMSTATUS:
+                return new RevertItemStatus();
+            case VIEWITEMINFO:
+                return new ViewItemInfo();
+            case DISPLAYLOCALHISTORY:
+                return new DisplayLocalHistory();
             // not implemented yet
             default:
                 throw new IllegalArgumentException(INVALID_COMMAND);

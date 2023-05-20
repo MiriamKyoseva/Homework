@@ -1,5 +1,7 @@
-package boardr.commands;
+package boardr.commands.itemcommands;
 
+import boardr.commands.common.Command;
+import boardr.commands.common.CommandConstants;
 import boardr.models.boarditem.Issue;
 
 import java.util.List;

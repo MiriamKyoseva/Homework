@@ -1,22 +1,22 @@
 package boardr.models.boarditem;
 
-import boardr.models.board.Board;
 import boardr.models.common.Status;
+import boardr.models.eventlog.EventLog;
 import boardr.models.eventlog.Log;
 
 import java.time.LocalDate;
 
+import static boardr.commands.common.CommandConstants.BOARD_ITEM_CREATED;
 import static boardr.models.common.Errors.*;
 
 public class Task extends BoardItem {
     private static final int MIN_ASSIGNEE_LENGTH = 2;
     private static final int MAX_ASSIGNEE_LENGTH = 30;
-    private String assignee;
 
     public String getAssignee() {
         return assignee;
     }
-
+    @Override
     public void setAssignee(String newAssignee) {
         if (newAssignee == null)
             throw new IllegalArgumentException(NULL_ASSIGNEE_ERROR);
@@ -31,18 +31,23 @@ public class Task extends BoardItem {
             Log assigneeChange = new Log(desc);
             addToHistory(assigneeChange);
         }
-
     }
 
     public Task(String title, String assignee, LocalDate dueDate) {
         super(title, dueDate);
         setAssignee(assignee);
         status = Status.TO_DO;
+        String desc = String.format(BOARD_ITEM_CREATED, getInfo());
+        Log itemCreated = new Log(desc);
+        addToHistory(itemCreated);
     }
     public Task(String title, String assignee, String dueDate) {
         super(title, dueDate);
         setAssignee(assignee);
         status = Status.TO_DO;
+        String desc = String.format(BOARD_ITEM_CREATED, getInfo());
+        Log itemCreated = new Log(desc);
+        addToHistory(itemCreated);
     }
     @Override
     public void revertStatus() {
@@ -53,5 +58,11 @@ public class Task extends BoardItem {
     public String getInfo() {
         String info = String.format("Task \"%s\", [%s | %s] Assignee: %s", title, status.label, dueDate, assignee);
         return info;
+    }
+    @Override
+    public void displayLocalHistory() {
+        for (Log kur : localEvents) {
+            kur.viewInfo();
+        }
     }
 }

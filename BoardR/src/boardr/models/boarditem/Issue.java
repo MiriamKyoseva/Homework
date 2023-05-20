@@ -1,17 +1,17 @@
 package boardr.models.boarditem;
 
-import boardr.models.board.Board;
-import boardr.models.common.Status;
+
+import boardr.models.eventlog.EventLog;
 import boardr.models.eventlog.Log;
 
 import java.time.LocalDate;
 
+import static boardr.commands.common.CommandConstants.BOARD_ITEM_CREATED;
 import static boardr.models.common.Errors.*;
 
 public class Issue extends BoardItem {
     private static final int MIN_DESCRIPTION_LENGTH = 5;
     private static final int MAX_DESCRIPTION_LENGTH = 60;
-    private String description;
 
     public String getDescription() {
         return description;
@@ -28,14 +28,26 @@ public class Issue extends BoardItem {
     public Issue(String title, String description, LocalDate dueDate) {
         super(title, dueDate);
         setDescription(description);
+        String desc = String.format(BOARD_ITEM_CREATED, getInfo());
+        Log itemCreated = new Log(desc);
+        addToHistory(itemCreated);
     }
     public Issue(String title, String description, String dueDate) {
         super(title, dueDate);
         setDescription(description);
+        String desc = String.format(BOARD_ITEM_CREATED, getInfo());
+        Log itemCreated = new Log(desc);
+        addToHistory(itemCreated);
     }
     @Override
     public String getInfo() {
         String info = String.format("Issue \"%s\", %s [%s | %s]", title, description, status.label, dueDate);
         return info;
+    }
+    @Override
+    public void displayLocalHistory() {
+        for (Log kur : localEvents) {
+            kur.viewInfo();
+        }
     }
 }

@@ -1,9 +1,10 @@
-package boardr.commands;
+package boardr.commands.itemcommands;
 
 
+import boardr.commands.common.Command;
+import boardr.commands.common.CommandConstants;
 import boardr.models.boarditem.BoardItem;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import static boardr.models.board.Board.*;

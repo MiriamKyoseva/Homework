@@ -1,6 +1,6 @@
 package boardr.core;
 
-import boardr.commands.Command;
+import boardr.commands.common.Command;
 
 import java.util.ArrayList;
 import java.util.List;

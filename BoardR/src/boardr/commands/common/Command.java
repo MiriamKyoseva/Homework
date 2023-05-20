@@ -1,4 +1,4 @@
-package boardr.commands;
+package boardr.commands.common;
 
 import java.util.List;
 

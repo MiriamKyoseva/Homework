@@ -14,10 +14,6 @@ public class Board {
     public static ArrayList<BoardItem> getItems() {
         return new ArrayList<>(items);
     }
-    private int totalItems = items.size();
-    public int getTotalItems() {
-        return totalItems;
-    }
     public static int getItemIndex(String oldTitle) {
         if (getItems().stream().noneMatch(item -> item.getTitle().equals(oldTitle)))
             throw new IllegalArgumentException(FINDING_ITEM_ERROR);

@@ -11,4 +11,10 @@ public class CommandConstants {
             "Due Date for \"%s\" was changed from %s to %s";
     public static final String ITEM_STATUS_CHANGED =
             "\"%s\" status was changed from %s to %s";
+    public static final String ITEM_REMOVED =
+            "\"%s\" was removed from the Board";
+    public static final String ITEM_ADDED =
+            "\"%s\" was added to the Board";
+    public static final String CLEARED_BIN =
+            "Bin was emptied.";
 }

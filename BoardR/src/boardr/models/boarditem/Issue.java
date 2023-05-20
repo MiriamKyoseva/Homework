@@ -1,6 +1,7 @@
 package boardr.models.boarditem;
 
 
+import boardr.models.board.Board;
 import boardr.models.common.Status;
 import boardr.models.eventlog.EventLog;
 import boardr.models.eventlog.Log;
@@ -34,6 +35,7 @@ public class Issue extends BoardItem {
         setTitle(title);
         setDueDate(dueDate);
         setDescription(description);
+        Board.addItem(this);
         String desc = String.format(BOARD_ITEM_CREATED, getInfo());
         Log itemCreated = new Log(desc);
         addToHistory(itemCreated);

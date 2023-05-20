@@ -67,8 +67,8 @@ public class BoardItem {
             throw new IllegalArgumentException(BLANK_TITLE_ERROR);
         if (newTitle.length() < MIN_TITLE_LENGTH || newTitle.length() > MAX_TITLE_LENGTH)
             throw new IllegalArgumentException(String.format(TITLE_LENGTH_ERROR, MIN_TITLE_LENGTH, MAX_TITLE_LENGTH));
-        if (getItems().stream().anyMatch(item -> item.getTitle().equals(title)))
-            throw new IllegalArgumentException(EXISTING_ITEM_WITH_SAME_TITLE_ERROR);
+        if (getItems().stream().anyMatch(item -> item.getTitle().equals(newTitle)))
+            throw new IllegalArgumentException(String.format(EXISTING_ITEM_WITH_SAME_TITLE_ERROR, newTitle));
         String previousTitle = this.title;
         this.title = newTitle;
         if (previousTitle != null) {

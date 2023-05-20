@@ -1,5 +1,7 @@
 package boardr.core;
 
+import boardr.commands.DisplayEventLog;
+import boardr.commands.boardcommands.*;
 import boardr.commands.common.Command;
 import boardr.commands.common.CommandType;
 import boardr.commands.itemcommands.*;
@@ -35,7 +37,18 @@ public class CommandFactory {
                 return new ViewItemInfo();
             case DISPLAYLOCALHISTORY:
                 return new DisplayLocalHistory();
-            // not implemented yet
+            case DISPLAYEVENTLOG:
+                return new DisplayEventLog();
+            case BOARDADDITEM:
+                return new BoardAddItem();
+            case BOARDREMOVEITEM:
+                return new BoardRemoveItem();
+            case BOARDPRINTLIST:
+                return new BoardPrintList();
+            case BINPRINTLIST:
+                return new BinPrintList();
+            case CLEARBIN:
+                return new ClearBin();
             default:
                 throw new IllegalArgumentException(INVALID_COMMAND);
         }

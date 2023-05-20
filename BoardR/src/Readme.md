@@ -59,7 +59,7 @@ Constrains:
 ChangeAssignee ; buy a banica ; me ; you
 ```
 ```
-Assignee was changed from teo to mei for task buy a banica
+Assignee was changed from me to you for task buy a banica
 ```
 #### ChangeItemDueDate
 ```

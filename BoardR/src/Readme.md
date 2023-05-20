@@ -8,7 +8,7 @@ There are 3 items that can be added to the Board:
 - Issue
 - Task
 
-I added 10 commands (for now) and I give examples for input and output.
+I added 16 commands (for now) and I give examples for input and output.
 ### Commands
 #### CreateBoardItem 
 Constrains:

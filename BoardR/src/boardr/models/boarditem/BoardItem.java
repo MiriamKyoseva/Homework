@@ -27,7 +27,9 @@ public class BoardItem {
     }
 
     protected final ArrayList<Log> localEvents = new ArrayList<>();
-
+    protected BoardItem() {
+        status = Status.OPEN;
+    }
     public BoardItem (String title, LocalDate dueDate) {
         setTitle(title);
         setDueDate(dueDate);

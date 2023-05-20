@@ -1,15 +1,14 @@
 package boardr.commands.boardcommands;
 
 import boardr.commands.common.Command;
-import boardr.commands.common.CommandConstants;
 import boardr.models.boarditem.BoardItem;
 import boardr.models.eventlog.Log;
 
 import java.util.List;
 
 import static boardr.commands.common.CommandConstants.CLEARED_BIN;
-import static boardr.models.board.Bin.changeTrashItem;
-import static boardr.models.board.Bin.removeTrashItem;
+import static boardr.models.board.Board.changeTrashItem;
+import static boardr.models.board.Board.removeTrashItem;
 import static boardr.models.eventlog.EventLog.addLogToHistory;
 
 public class ClearBin implements Command {

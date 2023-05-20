@@ -9,6 +9,8 @@ import static boardr.models.common.Errors.*;
 public class Board {
     private static final ArrayList<BoardItem> items = new ArrayList<>();
     private static final ArrayList<BoardItem> trashItems = new ArrayList<>();
+    private static ArrayList<BoardItem> searchTrashItem = getTrashItems();
+    private static ArrayList<BoardItem> searchItem = getItems();
     public static ArrayList<BoardItem> changeItem() {
         return items;
     }
@@ -16,14 +18,9 @@ public class Board {
         return new ArrayList<>(items);
     }
     public static int getItemIndex(String oldTitle) {
-        if (getItems().stream().noneMatch(item -> item.getTitle().equals(oldTitle)))
-            throw new IllegalArgumentException(FINDING_ITEM_ERROR);
-        ArrayList<BoardItem> searchItem = getItems();
-        int index = 0;
-        for (BoardItem kur : searchItem) {
-            if (kur.getTitle().equals(oldTitle))  index=getItems().indexOf(kur);
-        }
-        return index;
+        BoardItem item = searchItem.stream().filter(kur -> kur.getTitle().equals(oldTitle)).findFirst().orElse(null);
+        if (item == null) throw new IllegalArgumentException(FINDING_ITEM_ERROR);
+        return searchItem.indexOf(item);
     }
 
     public static void addItem(BoardItem item) {
@@ -51,14 +48,9 @@ public class Board {
         return new ArrayList<>(trashItems);
     }
     public static int getTrashItemIndex(String oldTitle) {
-        if (getTrashItems().stream().noneMatch(item -> item.getTitle().equals(oldTitle)))
-            throw new IllegalArgumentException(FINDING_ITEM_ERROR);
-        ArrayList<BoardItem> searchItem = getTrashItems();
-        int index = 0;
-        for (BoardItem kur : searchItem) {
-            if (kur.getTitle().equals(oldTitle))  index=getTrashItems().indexOf(kur);
-        }
-        return index;
+        BoardItem item = searchTrashItem.stream().filter(kur -> kur.getTitle().equals(oldTitle)).findFirst().orElse(null);
+        if (item == null) throw new IllegalArgumentException(FINDING_ITEM_ERROR);
+        return searchTrashItem.indexOf(item);
     }
 
     public static void addTrashItem(BoardItem item) {

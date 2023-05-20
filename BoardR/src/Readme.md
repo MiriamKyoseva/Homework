@@ -50,7 +50,7 @@ Constrains:
 ChangeItemTitle ; banica ; voidd
 ```
 ```
-"banica" was changed to "voidd".
+"banica" was changed to "voidd"
 ```
 #### ChangeAssignee
 Constrains:
@@ -149,7 +149,7 @@ Issue "voidd", banica is gone [Open | 2023-05-30]
 ```
 #### ClearBin
 ```
-Clear Bin
+ClearBin
 BinPrintList
 ```
 ```

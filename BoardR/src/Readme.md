@@ -90,17 +90,15 @@ ViewItemInfo ; buy a banica
 Task "buy a banica", [To Do | 2023-05-25] Assignee: you
 ```
 #### DisplayLocalHistory
-- Here for whatever reason the first log is flawed; Like, wtf. Assignee null. Gotta fix it, but it's 5 AM and I need sleep.
 ```
 DisplayLocalHistory ; buy a banica
 ```
 ```
-[2023-05-20 04:56:45] Item was created: Task "buy a banica", [Open | 2023-05-30] Assignee: null
-[2023-05-20 04:56:45] Item was created: Task "buy a banica", [To Do | 2023-05-30] Assignee: me
-[2023-05-20 04:57:03] Assignee changed from me to you
-[2023-05-20 04:57:12] Due Date for "buy a banica" was changed from 2023-05-30 to 2023-05-25
-[2023-05-20 04:57:55] "buy a banica" status was changed from To Do to In Progress
-[2023-05-20 04:58:01] "buy a banica" status was changed from In Progress to To Do
+[2023-05-20 11:22:15] Item was created: Task "buy a banica", [To Do | 2023-05-30] Assignee: me
+[2023-05-20 11:22:28] Assignee was changed from me to you for task "buy a banica"
+[2023-05-20 11:22:42] Due Date for "buy a banica" was changed from 2023-05-30 to 2023-05-25
+[2023-05-20 11:22:49] "buy a banica" status was changed from To Do to In Progress
+[2023-05-20 11:22:57] "buy a banica" status was changed from In Progress to To Do
 ===
 ```
 #### Exit

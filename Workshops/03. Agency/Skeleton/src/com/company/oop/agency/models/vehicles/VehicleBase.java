@@ -4,7 +4,7 @@ import com.company.oop.agency.models.vehicles.contracts.Vehicle;
 
 import static com.company.oop.agency.utils.ValidationHelper.validateValueInRange;
 
-public abstract class VehicleImpl implements Vehicle {
+public abstract class VehicleBase implements Vehicle {
     public static final int PASSENGER_MIN_VALUE = 1;
     public static final int PASSENGER_MAX_VALUE = 800;
     public static final double PRICE_MIN_VALUE = 0.1;

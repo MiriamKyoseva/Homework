@@ -3,7 +3,7 @@ import com.company.oop.agency.models.vehicles.contracts.Train;
 
 import static com.company.oop.agency.utils.ValidationHelper.validateValueInRange;
 
-public class TrainImpl extends VehicleImpl implements Train {
+public class TrainImpl extends VehicleBase implements Train {
 
     public static final int PASSENGER_MIN_VALUE = 30;
     public static final int PASSENGER_MAX_VALUE = 150;

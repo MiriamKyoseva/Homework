@@ -5,7 +5,7 @@ import com.company.oop.agency.models.vehicles.contracts.Bus;
 
 import static com.company.oop.agency.utils.ValidationHelper.validateValueInRange;
 
-public class BusImpl extends VehicleImpl implements Bus {
+public class BusImpl extends VehicleBase implements Bus {
 
     public static final int PASSENGER_MIN_VALUE = 10;
     public static final int PASSENGER_MAX_VALUE = 50;

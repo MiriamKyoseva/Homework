@@ -38,6 +38,11 @@ public class TicketImpl implements Ticket {
         return administrativeCosts;
     }
     private void setAdministrativeCosts(double costs) {
+        //It doesn't make sense the administrative costs to be less than 1
+        // which will result in a total price lower than the travel costs.
+        //but alas
+        if (costs < 0)
+            throw new InvalidUserInputException(String.format("Value of 'costs' must be a positive number. Actual value: %.2f.", costs));
         administrativeCosts = costs;
     }
 
@@ -50,11 +55,8 @@ public class TicketImpl implements Ticket {
         return journey.calculateTravelCosts()*getAdministrativeCosts();
     }
     public TicketImpl(int id, Journey journey, double costs) {
-        //it's not 0 because it wouldn't make sense the administrative costs to be less than 1
-        // which will result in a total price lower than the travel costs.
-        if (costs < 1)
-            throw new InvalidUserInputException(String.format("Value of 'costs' must be a positive number. Actual value: %.2f.", costs));
         this.id = id;
+        setAdministrativeCosts(costs);
         setJourney(journey);
         setDestination(journey.getDestination());
         setAdministrativeCosts(costs);

@@ -1,7 +1,4 @@
 package com.company.oop.agency.models.vehicles;
-
-import com.company.oop.agency.exceptions.InvalidUserInputException;
-import com.company.oop.agency.models.vehicles.contracts.Airplane;
 import com.company.oop.agency.models.vehicles.contracts.Train;
 
 public class TrainImpl extends VehicleImpl implements Train {

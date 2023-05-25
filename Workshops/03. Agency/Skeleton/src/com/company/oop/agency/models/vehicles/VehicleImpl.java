@@ -42,7 +42,7 @@ public abstract class VehicleImpl implements Vehicle {
     protected void setPricePerKilometer(double pricePerKilometer) {
         if (pricePerKilometer < PRICE_MIN_VALUE || pricePerKilometer > PRICE_MAX_VALUE)
             throw new IllegalArgumentException(
-                    String.format("A vehicle with a price per kilometer lower than $0.10 or higher than $2.50 cannot exist!",
+                    String.format("A vehicle with a price per kilometer lower than $%.2f or higher than $%.2f cannot exist!",
                             PRICE_MIN_VALUE,
                             PRICE_MAX_VALUE));
         this.pricePerKilometer = pricePerKilometer;

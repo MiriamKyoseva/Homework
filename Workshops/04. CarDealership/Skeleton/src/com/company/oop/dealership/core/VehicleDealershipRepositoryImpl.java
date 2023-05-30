@@ -37,10 +37,8 @@ public class VehicleDealershipRepositoryImpl implements VehicleDealershipReposit
 
     @Override
     public User findUserByUsername(String username) {
-            User user = getUsers().stream().filter(x -> x.getUsername().equals(username)).findFirst().orElse(null);
-            if (user == null)
-                throw new IllegalArgumentException(String.format(NO_SUCH_USER, username));
-            return user;
+            return getUsers().stream().filter(x -> x.getUsername().equals(username)).findFirst()
+                    .orElseThrow(() -> new IllegalArgumentException(String.format(NO_SUCH_USER, username)));
     }
 
     @Override

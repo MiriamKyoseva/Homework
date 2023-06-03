@@ -9,6 +9,7 @@ import static java.lang.String.format;
 public class TruckImpl extends VehicleBase implements Truck {
     public static final int WEIGHT_CAP_MIN = 1;
     public static final int WEIGHT_CAP_MAX = 100;
+    public static final int TRUCK_WHEEL_COUNT = 8;
     private static final String WEIGHT_CAP_ERR = format(
             "Weight capacity must be between %d and %d!",
             WEIGHT_CAP_MIN,
@@ -19,7 +20,7 @@ public class TruckImpl extends VehicleBase implements Truck {
     public TruckImpl(String make, String model, double price, int weightCapacity) {
         super(make, model, price);
         setType(VehicleType.TRUCK);
-        setWheels(8);
+        setWheels(TRUCK_WHEEL_COUNT);
         setWeightCapacity(weightCapacity);
     }
 
@@ -30,9 +31,9 @@ public class TruckImpl extends VehicleBase implements Truck {
     @Override
     public String toString() {
         return String.format("%s" +
-                "Weight Capacity: %s" +
-                "t%n" +
-                "%s",
+                        "Weight Capacity: %s" +
+                        "t%n" +
+                        "%s",
                 super.toString(),
                 getWeightCapacity(),
                 commentsToString());

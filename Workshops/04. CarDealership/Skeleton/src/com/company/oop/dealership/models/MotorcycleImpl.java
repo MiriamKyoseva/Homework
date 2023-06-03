@@ -9,6 +9,7 @@ import static java.lang.String.format;
 public class MotorcycleImpl extends VehicleBase implements Motorcycle {
     public static final int CATEGORY_LEN_MIN = 3;
     public static final int CATEGORY_LEN_MAX = 10;
+    public static final int MOTORCYCLE_WHEEL_COUNT = 2;
     private static final String CATEGORY_LEN_ERR = format(
             "Category must be between %d and %d characters long!",
             CATEGORY_LEN_MIN,
@@ -19,7 +20,7 @@ public class MotorcycleImpl extends VehicleBase implements Motorcycle {
     public MotorcycleImpl(String make, String model, double price, String category) {
         super(make, model, price);
         setType(VehicleType.MOTORCYCLE);
-        setWheels(2);
+        setWheels(MOTORCYCLE_WHEEL_COUNT);
         setCategory(category);
     }
 
@@ -31,8 +32,8 @@ public class MotorcycleImpl extends VehicleBase implements Motorcycle {
     @Override
     public String toString() {
         return String.format("%s" +
-                "Category: %s%n" +
-                "%s%n",
+                        "Category: %s%n" +
+                        "%s%n",
                 super.toString(),
                 getCategory(),
                 commentsToString());

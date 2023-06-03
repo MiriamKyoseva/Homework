@@ -90,6 +90,7 @@ public abstract class VehicleBase implements Vehicle {
                 getWheels(),
                 removeTrailingZerosFromDouble(getPrice()));
     }
+
     public String commentsToString() {
         StringBuilder stringBuilder = new StringBuilder();
         if (comments.isEmpty()) stringBuilder.append(NO_COMMENTS_HEADER);
@@ -102,14 +103,17 @@ public abstract class VehicleBase implements Vehicle {
         }
         return stringBuilder.toString().trim();
     }
+
     private static String removeTrailingZerosFromDouble(double number) {
         BigDecimal num = BigDecimal.valueOf(number).stripTrailingZeros();
         return num.toPlainString();
     }
+
     @Override
     public void addComment(Comment comment) {
         comments.add(comment);
     }
+
     @Override
     public void removeComment(Comment comment) {
         comments.remove(comment);
@@ -119,10 +123,12 @@ public abstract class VehicleBase implements Vehicle {
         validateIntRange(make.length(), MAKE_NAME_LEN_MIN, MAKE_NAME_LEN_MAX, MAKE_NAME_LEN_ERR);
         this.make = make;
     }
+
     private void setModel(String model) {
         validateIntRange(model.length(), MODEL_NAME_LEN_MIN, MODEL_NAME_LEN_MAX, MODEL_NAME_LEN_ERR);
         this.model = model;
     }
+
     private void setPrice(double price) {
         validateDecimalRange(price, PRICE_VAL_MIN, PRICE_VAL_MAX, PRICE_VAL_ERR);
         this.price = price;

@@ -9,6 +9,7 @@ import static java.lang.String.format;
 public class CarImpl extends VehicleBase implements Car {
     public static final int CAR_SEATS_MIN = 1;
     public static final int CAR_SEATS_MAX = 10;
+    public static final int CAR_WHEEL_COUNT = 4;
     private static final String CAR_SEATS_ERR = format(
             "Seats must be between %d and %d!",
             CAR_SEATS_MIN,
@@ -19,7 +20,7 @@ public class CarImpl extends VehicleBase implements Car {
     public CarImpl(String make, String model, double price, int seats) {
         super(make, model, price);
         setType(VehicleType.CAR);
-        setWheels(4);
+        setWheels(CAR_WHEEL_COUNT);
         setSeats(seats);
     }
 
@@ -31,8 +32,8 @@ public class CarImpl extends VehicleBase implements Car {
     @Override
     public String toString() {
         return String.format("%s" +
-                "Seats: %s%n" +
-                "%s%n",
+                        "Seats: %s%n" +
+                        "%s%n",
                 super.toString(),
                 getSeats(),
                 commentsToString());

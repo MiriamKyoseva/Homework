@@ -9,8 +9,8 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class CategoryImplTests {
-    String ValidTestName = "testing";
-    double price = 6.00;
+    private String ValidTestName = "testing";
+    private double price = 6.00;
 
     @Test
     public void constructor_Should_InitializeName_When_ArgumentsAreValid() {

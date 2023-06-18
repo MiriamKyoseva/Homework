@@ -14,9 +14,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AddProductToCategoryCommandTests {
-    ProductRepositoryImpl productRepository;
-    AddProductToCategoryCommand addProductToCategoryCommand;
-    List<String> parameters;
+    private String productName = "product";
+    private String brandName = "brand";
+    private String categoryName = "category";
+    private double price = 4.00;
+    private ProductRepositoryImpl productRepository;
+    private AddProductToCategoryCommand addProductToCategoryCommand;
+    private List<String> parameters;
 
     @BeforeEach
     public void Arrange() {
@@ -28,15 +32,15 @@ public class AddProductToCategoryCommandTests {
     @Test
     public void execute_Should_AddProductToCategory_When_ValidParameters() {
         //Arrange
-        productRepository.createProduct("product", "brand", 4.00, GenderType.UNISEX);
-        productRepository.createCategory("category");
-        parameters.add("category");
-        parameters.add("product");
+        productRepository.createProduct(productName, brandName, price, GenderType.UNISEX);
+        productRepository.createCategory(categoryName);
+        parameters.add(categoryName);
+        parameters.add(productName);
         //Act
         addProductToCategoryCommand.execute(parameters);
         //Assert
-        Assertions.assertTrue(productRepository.findCategoryByName("category")
-                .getProducts().contains(productRepository.findProductByName("product")));
+        Assertions.assertTrue(productRepository.findCategoryByName(categoryName)
+                .getProducts().contains(productRepository.findProductByName(productName)));
     }
 
     @Test

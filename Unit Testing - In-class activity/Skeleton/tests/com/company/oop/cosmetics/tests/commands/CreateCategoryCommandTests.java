@@ -13,9 +13,10 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class CreateCategoryCommandTests {
-    ProductRepositoryImpl productRepository;
-    CreateCategoryCommand createCategoryCommand;
-    List<String> parameters;
+    private String categoryName = "category";
+    private ProductRepositoryImpl productRepository;
+    private CreateCategoryCommand createCategoryCommand;
+    private List<String> parameters;
 
     @BeforeEach
     public void Arrange() {
@@ -27,12 +28,12 @@ public class CreateCategoryCommandTests {
     @Test
     public void execute_Should_AddNewCategoryToRepository_When_ValidParameters() {
         //Arrange
-        parameters.add("valid");
+        parameters.add(categoryName);
         //Act
         createCategoryCommand.execute(parameters);
         //Assert
         assertTrue(productRepository.getCategories().stream().anyMatch(category ->
-                category.getName().equals("valid")
+                category.getName().equals(categoryName)
         ));
     }
 
@@ -47,8 +48,8 @@ public class CreateCategoryCommandTests {
     @Test
     public void execute_Should_ThrowException_When_DuplicateCategoryName() {
         //Arrange
-        parameters.add("valid");
-        productRepository.createCategory("valid");
+        productRepository.createCategory(categoryName);
+        parameters.add(categoryName);
         //Act and Assert
         assertThrows(DuplicateEntityException.class, () -> {
             createCategoryCommand.execute(parameters);

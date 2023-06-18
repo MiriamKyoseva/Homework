@@ -14,9 +14,13 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class CreateProductCommandTests {
-    ProductRepositoryImpl productRepository;
-    CreateProductCommand createProductCommand;
-    List<String> parameters;
+    private String productName = "product";
+    private String brandName = "brand";
+    private double price = 4.00;
+    private String genderName = "unisex";
+    private ProductRepositoryImpl productRepository;
+    private CreateProductCommand createProductCommand;
+    private List<String> parameters;
 
     @BeforeEach
     public void Arrange() {
@@ -28,14 +32,14 @@ public class CreateProductCommandTests {
     @Test
     public void execute_Should_AddNewProductToRepository_When_ValidParameters() {
         //Arrange
-        parameters.add("name");
-        parameters.add("brand");
+        parameters.add(productName);
+        parameters.add(brandName);
         parameters.add("4.00");
-        parameters.add("unisex");
+        parameters.add(genderName);
         //Act
         createProductCommand.execute(parameters);
         //Assert
-        assertTrue(productRepository.getProducts().stream().anyMatch(product -> product.getName().equals("name")));
+        assertTrue(productRepository.getProducts().stream().anyMatch(product -> product.getName().equals(productName)));
     }
 
     @Test
@@ -49,11 +53,11 @@ public class CreateProductCommandTests {
     @Test
     public void execute_Should_ThrowException_When_DuplicateProductName() {
         //Arrange
-        parameters.add("name");
-        parameters.add("brand");
+        parameters.add(productName);
+        parameters.add(brandName);
         parameters.add("4.00");
-        parameters.add("unisex");
-        productRepository.createProduct("product", "brand", 4.00, GenderType.UNISEX);
+        parameters.add(genderName);
+        productRepository.createProduct(productName, brandName, price, GenderType.UNISEX);
         //Act and Assert
         assertThrows(DuplicateEntityException.class, () -> {
             createProductCommand.execute(parameters);
@@ -63,10 +67,10 @@ public class CreateProductCommandTests {
     @Test
     public void tryParseDouble_Should_ThrowException_When_InvalidParameter() {
         //Arrange
-        parameters.add("name");
-        parameters.add("brand");
+        parameters.add(productName);
+        parameters.add(brandName);
         parameters.add("four");
-        parameters.add("unisex");
+        parameters.add(genderName);
         //Act and Assert
         assertThrows(InvalidUserInputException.class, () -> {
             createProductCommand.execute(parameters);
@@ -76,9 +80,9 @@ public class CreateProductCommandTests {
     @Test
     public void tryParseGender_Should_ThrowException_When_InvalidParameter() {
         //Arrange
-        parameters.add("name");
-        parameters.add("brand");
-        parameters.add("4");
+        parameters.add(productName);
+        parameters.add(brandName);
+        parameters.add("4.00");
         parameters.add("cat");
         //Act and Assert
         assertThrows(InvalidUserInputException.class, () -> {

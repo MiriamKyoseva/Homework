@@ -4,6 +4,7 @@ import com.company.oop.cosmetics.commands.CreateProductCommand;
 import com.company.oop.cosmetics.core.ProductRepositoryImpl;
 import com.company.oop.cosmetics.exceptions.DuplicateEntityException;
 import com.company.oop.cosmetics.exceptions.InvalidUserInputException;
+import com.company.oop.cosmetics.models.GenderType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -22,21 +23,19 @@ public class CreateProductCommandTests {
         productRepository = new ProductRepositoryImpl();
         createProductCommand = new CreateProductCommand(productRepository);
         parameters = new ArrayList<>();
-        parameters.add("name");
-        parameters.add("brand");
     }
 
     @Test
     public void execute_Should_AddNewProductToRepository_When_ValidParameters() {
         //Arrange
+        parameters.add("name");
+        parameters.add("brand");
         parameters.add("4.00");
         parameters.add("unisex");
         //Act
         createProductCommand.execute(parameters);
         //Assert
-        assertTrue(productRepository.getProducts().stream().anyMatch(product ->
-                product.getName().equals("name")
-        ));
+        assertTrue(productRepository.getProducts().stream().anyMatch(product -> product.getName().equals("name")));
     }
 
     @Test
@@ -50,9 +49,11 @@ public class CreateProductCommandTests {
     @Test
     public void execute_Should_ThrowException_When_DuplicateProductName() {
         //Arrange
+        parameters.add("name");
+        parameters.add("brand");
         parameters.add("4.00");
         parameters.add("unisex");
-        createProductCommand.execute(parameters);
+        productRepository.createProduct("product", "brand", 4.00, GenderType.UNISEX);
         //Act and Assert
         assertThrows(DuplicateEntityException.class, () -> {
             createProductCommand.execute(parameters);
@@ -61,8 +62,12 @@ public class CreateProductCommandTests {
 
     @Test
     public void tryParseDouble_Should_ThrowException_When_InvalidParameter() {
+        //Arrange
+        parameters.add("name");
+        parameters.add("brand");
         parameters.add("four");
         parameters.add("unisex");
+        //Act and Assert
         assertThrows(InvalidUserInputException.class, () -> {
             createProductCommand.execute(parameters);
         });
@@ -70,8 +75,12 @@ public class CreateProductCommandTests {
 
     @Test
     public void tryParseGender_Should_ThrowException_When_InvalidParameter() {
+        //Arrange
+        parameters.add("name");
+        parameters.add("brand");
         parameters.add("4");
         parameters.add("cat");
+        //Act and Assert
         assertThrows(InvalidUserInputException.class, () -> {
             createProductCommand.execute(parameters);
         });

@@ -69,6 +69,7 @@ public class ProductImplTests {
 
     @Test
     public void print_Should_PrintAllInformation() {
+        //Arrange
         ProductImpl testProduct = new ProductImpl(validTestName, validTestBrand, testPrice, testGender);
         String correctPrint = String.format(
                 "#%s %s%n" +
@@ -78,6 +79,7 @@ public class ProductImplTests {
                 testProduct.getBrand(),
                 testProduct.getPrice(),
                 testProduct.getGender());
+        //Assert
         assertEquals(correctPrint, testProduct.print());
     }
 }

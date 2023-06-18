@@ -14,6 +14,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class ProductRepositoryImplTests {
 
+    String productName = "product";
+    String categoryName = "category";
+    String brandName = "brand";
+    double price = 4.00;
+
     ProductRepositoryImpl productRepository;
 
     @BeforeEach
@@ -24,7 +29,7 @@ public class ProductRepositoryImplTests {
     @Test
     public void constructor_Should_InitializeProducts() {
         //Act
-        productRepository.createProduct("product", "brand", 4, GenderType.UNISEX);
+        productRepository.createProduct(productName, brandName, price, GenderType.UNISEX);
         //Assert
         assertEquals(1, productRepository.getProducts().size());
     }
@@ -32,7 +37,7 @@ public class ProductRepositoryImplTests {
     @Test
     public void constructor_Should_InitializeCategories() {
         //Act
-        productRepository.createCategory("category");
+        productRepository.createCategory(categoryName);
         //Assert
         assertEquals(1, productRepository.getCategories().size());
     }
@@ -40,7 +45,7 @@ public class ProductRepositoryImplTests {
     @Test
     public void getCategories_Should_ReturnCopyOfCollection() {
         //Arrange
-        productRepository.createCategory("category");
+        productRepository.createCategory(categoryName);
         //Act
         List<Category> testCategories = productRepository.getCategories();
         //Assert
@@ -50,7 +55,7 @@ public class ProductRepositoryImplTests {
     @Test
     public void getProducts_Should_ReturnCopyOfCollection() {
         //Arrange
-        productRepository.createProduct("product", "brand", 4, GenderType.UNISEX);
+        productRepository.createProduct(productName, brandName, price, GenderType.UNISEX);
         //Act
         List<Product> testProducts = productRepository.getProducts();
         //Assert
@@ -60,76 +65,76 @@ public class ProductRepositoryImplTests {
     @Test
     public void categoryExists_Should_ReturnTrue_When_CategoryExists() {
         //Arrange
-        productRepository.createCategory("category");
+        productRepository.createCategory(categoryName);
         //Assert
-        assertTrue(productRepository.categoryExist("category"));
+        assertTrue(productRepository.categoryExist(categoryName));
     }
 
     @Test
     public void categoryExists_Should_ReturnFalse_When_CategoryDoesNotExist() {
         //Assert
-        assertFalse(productRepository.categoryExist("category"));
+        assertFalse(productRepository.categoryExist(categoryName));
     }
 
     @Test
     public void productExists_Should_ReturnTrue_When_ProductExists() {
         //Arrange
-        productRepository.createProduct("product", "brand", 4, GenderType.UNISEX);
+        productRepository.createProduct(productName, brandName, price, GenderType.UNISEX);
         //Assert
-        assertTrue(productRepository.productExist("product"));
+        assertTrue(productRepository.productExist(productName));
     }
 
     @Test
     public void productExists_Should_ReturnFalse_When_ProductDoesNotExist() {
         //Assert
-        assertFalse(productRepository.productExist("product"));
+        assertFalse(productRepository.productExist(productName));
     }
 
     @Test
     public void createProduct_Should_AddToProducts_When_ArgumentsAreValid() {
         //Arrange
-        productRepository.createProduct("product", "brand", 4, GenderType.UNISEX);
+        productRepository.createProduct(productName, brandName, price, GenderType.UNISEX);
         //Assert
-        assertTrue(productRepository.productExist("product"));
+        assertTrue(productRepository.productExist(productName));
     }
 
     @Test
     public void createCategory_Should_AddToCategories_When_ArgumentsAreValid() {
         //Arrange
-        productRepository.createCategory("category");
+        productRepository.createCategory(categoryName);
         //Assert
-        assertTrue(productRepository.categoryExist("category"));
+        assertTrue(productRepository.categoryExist(categoryName));
     }
 
     @Test
     public void findCategoryByName_Should_ReturnCategory_When_Exists() {
         //Arrange
-        productRepository.createCategory("category");
+        productRepository.createCategory(categoryName);
         //Assert
-        assertEquals(productRepository.getCategories().get(0), productRepository.findCategoryByName("category"));
+        assertEquals(productRepository.getCategories().get(0), productRepository.findCategoryByName(categoryName));
     }
 
     @Test
     public void findCategoryByName_Should_ThrowException_When_DoesNotExist() {
         //Act and Assert
         assertThrows(InvalidUserInputException.class, () -> {
-            productRepository.findCategoryByName("category");
+            productRepository.findCategoryByName(categoryName);
         });
     }
 
     @Test
     public void findProductByName_Should_ReturnProduct_When_Exists() {
         //Arrange
-        productRepository.createProduct("product", "brand", 4, GenderType.UNISEX);
+        productRepository.createProduct(productName, brandName, price, GenderType.UNISEX);
         //Assert
-        assertEquals(productRepository.getProducts().get(0), productRepository.findProductByName("product"));
+        assertEquals(productRepository.getProducts().get(0), productRepository.findProductByName(productName));
     }
 
     @Test
     public void findProductByName_Should_ThrowException_When_DoesNotExist() {
         //Act and Assert
         assertThrows(InvalidUserInputException.class, () -> {
-            productRepository.findProductByName("product");
+            productRepository.findProductByName(productName);
         });
     }
 

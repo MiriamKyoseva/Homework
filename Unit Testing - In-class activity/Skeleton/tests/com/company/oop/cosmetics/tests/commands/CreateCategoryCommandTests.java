@@ -48,7 +48,7 @@ public class CreateCategoryCommandTests {
     public void execute_Should_ThrowException_When_DuplicateCategoryName() {
         //Arrange
         parameters.add("valid");
-        createCategoryCommand.execute(parameters);
+        productRepository.createCategory("valid");
         //Act and Assert
         assertThrows(DuplicateEntityException.class, () -> {
             createCategoryCommand.execute(parameters);

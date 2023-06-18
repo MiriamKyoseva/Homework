@@ -14,6 +14,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ShowCategoryCommandTests {
+    String categoryName = "name";
     ProductRepositoryImpl productRepository;
     ShowCategoryCommand showCategoryCommand;
     List<String> parameters;
@@ -28,15 +29,16 @@ public class ShowCategoryCommandTests {
     @Test
     public void execute_Should_PrintCategory_When_ValidParameters() {
         //Arrange
-        productRepository.createCategory("name");
-        parameters.add("name");
+        productRepository.createCategory(categoryName);
+        parameters.add(categoryName);
         //Act and Assert
-        assertEquals(productRepository.findCategoryByName("name").print(),
+        assertEquals(productRepository.findCategoryByName(categoryName).print(),
                 showCategoryCommand.execute(parameters));
     }
 
     @Test
     public void execute_Should_ThrowException_When_MissingParameters() {
+        //Act and Assert
         assertThrows(InvalidUserInputException.class, () -> {
             showCategoryCommand.execute(parameters);
         });

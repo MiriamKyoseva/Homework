@@ -27,17 +27,21 @@ public class AddProductToCategoryCommandTests {
 
     @Test
     public void execute_Should_AddProductToCategory_When_ValidParameters() {
+        //Arrange
         productRepository.createProduct("product", "brand", 4.00, GenderType.UNISEX);
         productRepository.createCategory("category");
         parameters.add("category");
         parameters.add("product");
+        //Act
         addProductToCategoryCommand.execute(parameters);
+        //Assert
         Assertions.assertTrue(productRepository.findCategoryByName("category")
                 .getProducts().contains(productRepository.findProductByName("product")));
     }
 
     @Test
     public void execute_Should_ThrowException_When_MissingParameters() {
+        //Assert
         Assertions.assertThrows(InvalidUserInputException.class, () -> {
             addProductToCategoryCommand.execute(parameters);
         });

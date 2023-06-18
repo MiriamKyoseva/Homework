@@ -9,10 +9,10 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ProductImplTests {
-    String validTestName = "shampoo";
-    String validTestBrand = "nivea";
-    double testPrice = 6.00;
-    GenderType testGender = GenderType.UNISEX;
+    private String validTestName = "shampoo";
+    private String validTestBrand = "nivea";
+    private double testPrice = 6.00;
+    private GenderType testGender = GenderType.UNISEX;
 
     @Test
     public void constructor_Should_InitializeName_When_ArgumentsAreValid() {

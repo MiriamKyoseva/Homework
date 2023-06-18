@@ -14,12 +14,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class ProductRepositoryImplTests {
 
-    String productName = "product";
-    String categoryName = "category";
-    String brandName = "brand";
-    double price = 4.00;
+    private String productName = "product";
+    private String categoryName = "category";
+    private String brandName = "brand";
+    private double price = 4.00;
 
-    ProductRepositoryImpl productRepository;
+    private ProductRepositoryImpl productRepository;
 
     @BeforeEach
     public void Arrange() {

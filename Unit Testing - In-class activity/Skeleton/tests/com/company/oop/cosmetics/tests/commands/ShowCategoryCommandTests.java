@@ -14,10 +14,10 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ShowCategoryCommandTests {
-    String categoryName = "name";
-    ProductRepositoryImpl productRepository;
-    ShowCategoryCommand showCategoryCommand;
-    List<String> parameters;
+    private String categoryName = "name";
+    private ProductRepositoryImpl productRepository;
+    private ShowCategoryCommand showCategoryCommand;
+    private List<String> parameters;
 
     @BeforeEach
     public void Arrange() {

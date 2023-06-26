@@ -74,30 +74,12 @@ public class ProductRepositoryImpl implements ProductRepository {
 
     @Override
     public boolean categoryExist(String categoryName) {
-        boolean exists = false;
-
-        for (Category category : getCategories()) {
-            if (category.getName().equalsIgnoreCase(categoryName)) {
-                exists = true;
-                break;
-            }
-        }
-
-        return exists;
+        return getCategories().stream().anyMatch(category -> category.getName().equalsIgnoreCase(categoryName));
     }
 
     @Override
     public boolean productExist(String productName) {
-        boolean exists = false;
-
-        for (Product product : getProducts()) {
-            if (product.getName().equalsIgnoreCase(productName)) {
-                exists = true;
-                break;
-            }
-        }
-
-        return exists;
+        return getProducts().stream().anyMatch(product -> product.getName().equalsIgnoreCase(productName));
     }
 
 }

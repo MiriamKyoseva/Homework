@@ -37,25 +37,14 @@ public class ProductRepositoryImpl implements ProductRepository {
 
     @Override
     public Product findProductByName(String productName) {
-        for (Product product : getProducts()) {
-            if (product.getName().equalsIgnoreCase(productName)) {
-                return product;
-            }
-        }
-
-
-        throw new IllegalArgumentException(String.format(PRODUCT_DOES_NOT_EXIST, productName));
+        return getProducts().stream().filter(x -> x.getName().equalsIgnoreCase(productName)).findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(String.format(PRODUCT_DOES_NOT_EXIST, productName)));
     }
 
     @Override
     public Category findCategoryByName(String categoryName) {
-        for (Category category : getCategories()) {
-            if (category.getName().equalsIgnoreCase(categoryName)) {
-                return category;
-            }
-        }
-
-        throw new IllegalArgumentException(String.format(CATEGORY_DOES_NOT_EXIST, categoryName));
+        return getCategories().stream().filter(x -> x.getName().equalsIgnoreCase(categoryName)).findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(String.format(CATEGORY_DOES_NOT_EXIST, categoryName)));
     }
 
     @Override

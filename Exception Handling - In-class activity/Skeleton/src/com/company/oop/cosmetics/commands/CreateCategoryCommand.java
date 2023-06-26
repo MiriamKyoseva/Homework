@@ -8,7 +8,6 @@ import java.util.List;
 public class CreateCategoryCommand implements Command {
     private static final int EXPECTED_NUMBER_OF_ARGUMENTS = 1;
     private static final String INVALID_ARGUMENTS = String.format("CreateCategory command expects %d parameters.", EXPECTED_NUMBER_OF_ARGUMENTS);
-    private static final String CATEGORY_ALREADY_EXISTS = "Category %s already exists.";
 
     private static final String CATEGORY_CREATED = "Category with name %s was created!";
 
@@ -29,9 +28,6 @@ public class CreateCategoryCommand implements Command {
     }
 
     private String createCategory(String categoryName) {
-        if (productRepository.categoryExist(categoryName))
-            throw new IllegalArgumentException(String.format(CATEGORY_ALREADY_EXISTS, categoryName));
-
         productRepository.createCategory(categoryName);
 
         return String.format(CATEGORY_CREATED, categoryName);

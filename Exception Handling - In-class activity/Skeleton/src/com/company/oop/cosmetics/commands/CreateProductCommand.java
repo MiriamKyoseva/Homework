@@ -11,7 +11,6 @@ public class CreateProductCommand implements Command {
     private static final String INVALID_ARGUMENTS = String.format("CreateProduct command expects %d parameters.", EXPECTED_NUMBER_OF_ARGUMENTS);
     private static final String INVALID_PRICE = "Price should be a number.";
     private static final String INVALID_GENDER = "Gender should be one of Men, Women or Unisex.";
-    private static final String PRODUCT_ALREADY_EXISTS = "Product %s already exists.";
 
     private static final String PRODUCT_CREATED = "Product with name %s was created!";
 
@@ -31,7 +30,7 @@ public class CreateProductCommand implements Command {
         GenderType gender;
         try {
             price = Double.parseDouble(parameters.get(2));
-        } catch (Exception ex) {
+        } catch (NumberFormatException ex) {
             throw new IllegalArgumentException(INVALID_PRICE);
         }
         try {
@@ -44,9 +43,6 @@ public class CreateProductCommand implements Command {
     }
 
     private String createProduct(String name, String brand, double price, GenderType gender) {
-        if (productRepository.productExist(name))
-            throw new IllegalArgumentException(String.format(PRODUCT_ALREADY_EXISTS, name));
-
         productRepository.createProduct(name, brand, price, gender);
 
         return String.format(PRODUCT_CREATED, name);

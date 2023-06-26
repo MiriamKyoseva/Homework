@@ -22,7 +22,7 @@ public class CreateProductCommand implements Command {
 
     @Override
     public String execute(List<String> parameters) {
-        if (parameters.size() < EXPECTED_NUMBER_OF_ARGUMENTS || parameters.size() > EXPECTED_NUMBER_OF_ARGUMENTS)
+        if (parameters.size() != EXPECTED_NUMBER_OF_ARGUMENTS)
             throw new IllegalArgumentException(INVALID_ARGUMENTS);
         String name = parameters.get(0);
         String brand = parameters.get(1);
@@ -35,7 +35,7 @@ public class CreateProductCommand implements Command {
         }
         try {
             gender = GenderType.valueOf(parameters.get(3).toUpperCase());
-        } catch (Exception ex) {
+        } catch (IllegalArgumentException ex) {
             throw new IllegalArgumentException(INVALID_GENDER);
         }
 

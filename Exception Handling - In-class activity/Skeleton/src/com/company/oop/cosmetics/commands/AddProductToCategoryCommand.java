@@ -21,7 +21,7 @@ public class AddProductToCategoryCommand implements Command {
 
     @Override
     public String execute(List<String> parameters) {
-        if (parameters.size() < EXPECTED_NUMBER_OF_ARGUMENTS || parameters.size() > EXPECTED_NUMBER_OF_ARGUMENTS)
+        if (parameters.size() != EXPECTED_NUMBER_OF_ARGUMENTS)
             throw new IllegalArgumentException(INVALID_ARGUMENTS);
         String categoryNameToAdd = parameters.get(0);
         String productNameToAdd = parameters.get(1);

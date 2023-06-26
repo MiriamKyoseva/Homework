@@ -13,7 +13,7 @@ public class CommandFactoryImpl implements CommandFactory {
         CommandType commandType;
         try {
             commandType = CommandType.valueOf(commandTypeValue.toUpperCase());
-        } catch (Exception ex) {
+        } catch (IllegalArgumentException ex) {
             throw new IllegalArgumentException(String.format(ILLEGAL_COMMAND, commandTypeValue));
         }
 
